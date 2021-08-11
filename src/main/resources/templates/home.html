@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>HOME</title>
+    <!--css-->
+    <link th:href="@{/css/home.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:insert="./headercom :: header"></div>
+
+<form th:action="@{/home}" method="post">
+    <div class="header">
+        <div class="left">
+            <p>
+            <h3>Get Task By Task_Type</h3>
+
+            <select name="option" id="op">
+                <option th:each="i : ${type}" th:value="*{i.getId()}" th:text="*{i.getName()}" th:selected="(*{i.getId()} == ${type_id})"></option>
+            </select>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+            <h3>Search by Title</h3>
+
+            <input type="text" name="txtsearch" />
+            </p>
+        </div>
+        <div class="button">
+            <h3>Action</h3>
+            <button type="submit" name="getTask">--GET TASK--</button>
+        </div>
+    </div>
+</form>
+
+<div class="addTask">
+    <div class="addTaskLeft">
+        <form th:action="@{/home}" method="post">
+            <div class="listTask">
+                <th:block th:each="task : ${listTask}">
+                    <input type="checkbox" name="cb" th:value="${task.id}"/>
+                    <span th:text="${task.title}"></span> - <span th:text="${task.time}" ></span> <span> (hour)</span>
+                    <br>
+                </th:block>
+                <button type="submit" name="addTask">--ADD TASK--</button>
+            </div>
+        </form>
+    </div>
+    <div class="addTaskRight">
+        <form th:action="@{/home}" method="post">
+            <table style="border: 1px solid black;">
+                <tr>
+                    <td>Title</td>
+                    <td><input type="text" name="titlenew" required /></td>
+                </tr>
+                <tr>
+                    <td>Time</td>
+                    <td><input type="number" name="timenew" required max="8" min="1"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="addNewTask">--ADD NEW TASK--</button>
+                        <h4 style="color:blue" th:text="${result}"></h4></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+
+<h4 style="color:red" th:text="${error}"></h4>
+
+
+<form th:action="@{/home}" method="post">
+    <table style="border: 1px solid black;">
+        <caption>------ RESULT ------</caption>
+        <tr>
+<!--            <td>Action</td>-->
+            <td>Title</td>
+<!--            <td>Description</td>-->
+            <td>Time</td>
+        </tr>
+        <tr th:each="task : ${addList}">
+<!--            <td><input type="checkbox" name="action" th:value="${task.id}"></td>-->
+            <td><span th:text="${task.title}"></span></td>
+<!--            <td><input type="text" name="description" /></td>-->
+            <td><span th:text="${task.time}" ></span></td>
+        </tr>
+    </table>
+<!--    <button type="submit" name="refresh">&#45;&#45;CLEAR&#45;&#45;</button>-->
+<!--    <button type="submit" name="addWork">&#45;&#45;ADD WORK&#45;&#45;</button>-->
+</form>
+</body>
+</html>
