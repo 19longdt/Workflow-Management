@@ -38,9 +38,7 @@ public class Empoyee_WorkService {
     }
 
     public List<Employee_Work> findAll(int idUser) {
-
-        // System.out.println(today[0] +" " + today[1]+" " + today[2] + " "+ idUser);
-        return employee_workRepository.findAll(idUser, today[0] +" " + today[1]+" " + today[2]);
+        return employee_workRepository.findAll(idUser, date);
     }
 
 
