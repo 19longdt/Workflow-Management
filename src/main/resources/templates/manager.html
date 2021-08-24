@@ -6,16 +6,16 @@
 </head>
 <body>
 <div th:insert="./headercom :: header"></div>
-<h3 style="color:green"  th:text=" 'Your list Work today:  ' + ${today}"></h3>
-<h3 style="color:green"  th:text=" 'Your work performance today:  ' + ${per} +'%'"></h3>
+<h3 style="color:green"  th:text=" #{loda.value.listtoday} + ':  ' + ${today}"></h3>
+<h3 style="color:green"  th:text=" #{loda.value.performance} +':  ' + ${per} +'%'"></h3>
 <form th:action="@{/manager}" method="post">
     <table style="border: 1px solid black">
         <tr class="color:red">
-            <td>Action</td>
-            <td>Title</td>
-            <td>Description</td>
-            <td>Time</td>
-            <td>Status</td>
+            <td th:text="#{loda.value.action}"></td>
+            <td th:text="#{loda.value.inputTitle}"></td>
+            <td th:text="#{loda.value.description}"></td>
+            <td th:text="#{loda.value.inputtime}"></td>
+            <td th:text="#{loda.value.status}"></td>
         </tr>
         <tr th:each="work : ${listWork}">
             <td><input type="checkbox" name="action" th:value="${work.id}"></td>
@@ -27,8 +27,8 @@
     </table>
     <br>
     <div>
-        <button type="submit" name="deleteWork">--Delete--</button>
-        <button type="submit" name="updateWork">--Update WORK--</button>
+        <button type="submit" name="deleteWork" th:text="'-----' + #{loda.value.delete} + '-----'"></button>
+        <button type="submit" name="updateWork" th:text="'-----' + #{loda.value.update} + '-----'"></button>
     </div>
 
 </form>

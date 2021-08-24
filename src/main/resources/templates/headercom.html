@@ -2,11 +2,13 @@
 <html lang ="en" xmlns:th="http://www.thymeleaf.org" >
 
 <body>
-<header th:fragment="header">
+
+<header th:fragment="headerr">
     <div>
-        <span><a th:href="@{/home}">Home</a></span> |
-        <span><a th:href="@{/manager}">Management</a></span> |
-        <span><a th:href="@{/statistic}">Statistical</a></span>
+        <span><a th:href="@{/home}" th:text="#{loda.value.home}"></a></span> |
+        <span><a th:href="@{/manager}"th:text="#{loda.value.manage}"></a></span> |
+        <span><a th:href="@{/statistic}"th:text="#{loda.value.statistical}"></a></span>
+
     </div>
 </header>
 

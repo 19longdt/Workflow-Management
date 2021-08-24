@@ -9,34 +9,34 @@
 <body>
 <div th:insert="./headercom :: header"></div>
 <br>
-    <h3>Statistic</h3>
+    <h3 th:text="#{loda.value.statistical}"></h3>
     <form th:action="@{/statistic}" method="post">
-        Select <select name="month" id="month">
+         <select name="month" id="month">
         <option th:each="i : ${month}" th:value="*{i}" th:text="*{i}" th:selected="(*{i} == ${getMonth})"></option>
     </select>
-        <button type="submit" name="select">--SELECT--</button>
+        <button type="submit" name="select" th:text="'-----' + #{loda.value.select} + '-----'"></button>
 
 
     <br>
     <div class="content">
         <div class="left">
             <div>
-                <h3 style="color:green"  th:text=" 'amount of work completed:  ' + ${completed}"></h3>
-                <button type="submit" name="completed">--SHOW--</button>
+                <h3 style="color:green"  th:text="#{loda.value.completed} + ': ' + ${completed}"></h3>
+                <button type="submit" name="completed" th:text=" '-----' + #{loda.value.show} + '-----' "></button>
             </div>
             <div>
-                <h3 style="color:green"  th:text=" 'amount of unfinished work:  ' + ${unfinished}"></h3>
-                <button type="submit" name="unfinished">--SHOW--</button>
+                <h3 style="color:green"  th:text="#{loda.value.unfinished} + ': ' + ${unfinished}"></h3>
+                <button type="submit" name="unfinished" th:text=" '-----' + #{loda.value.show} + '-----' "></button>
             </div>
         </div>
         <div class="right">
             <table th:if="${listWork != null}" style="border: 1px solid black">
-                <caption>---------- STATISTIC TABLE ----------</caption>
+                <caption th:text="#{loda.value.statable}"></caption>
                 <tr>
-                    <td>Date Time</td>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Time</td>
+                    <td th:text="#{loda.value.inputtime}"></td>
+                    <td th:text="#{loda.value.inputTitle}"></td>
+                    <td th:text="#{loda.value.description}"></td>
+                    <td th:text="#{loda.value.inputtime}"></td>
                 </tr>
                 <tr th:each="work : ${listWork}">
                     <td><span th:text="${work.datetime}"></span></td>
